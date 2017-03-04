@@ -64,7 +64,7 @@ set hidden  "ok to have buffers not visible what weren't written
 set wrapscan    "search scan wraps around the file
 set formatoptions=tcroql
 set updatetime=250
-" shut the fuck up
+"quiet
 set visualbell
 set noerrorbells
 
@@ -101,8 +101,8 @@ let mapleader=","
 
 nnoremap <leader>, :b#<CR>
 
-nnoremap ,f :NERDTreeToggle<CR>
-vnoremap ,f :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeToggle<CR>
+vnoremap <leader>f :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$'] " Ignore pyc files
 
 

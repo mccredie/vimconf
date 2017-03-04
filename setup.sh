@@ -17,5 +17,13 @@ install_vim_config() {
 }
 
 install_vim_config
-ln -vs $(pwd)/$(dirname $0)/vimrc ~/.vimrc
+ln -vs $(pwd)/$(dirname $0)/vimrc ~/.vimrc | true
+echo ----- Installing Vim Plugins -----
+vim -c ":PlugInstall | qa"
+
+echo ----- Building YouCompleteMe -----
+(
+  cd ~/.vim/plugged/YouCompleteMe;
+  python install.py
+)
 
