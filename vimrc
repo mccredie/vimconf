@@ -12,19 +12,21 @@
 set nocompatible
 filetype off
 
-" Pathogen is for auto-loading other plugins (by default from the bundle
-" directory).
-"call pathogen#infect()
-"call pathogen#helptags()
-call plug#begin('~/vimfiles/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-shell'
 Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'tpope/vim-surround'
+Plug 'pangloss/vim-javascript'
+Plug 'vim-syntastic/syntastic'
+Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'wellle/targets.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 " :PlugInstall to install
@@ -49,13 +51,13 @@ colorscheme desert
 
 set spell
 set backspace=indent,eol,start
-set history=50		
-set ruler		
+set history=50
+set ruler
 set number
 set rnu
-set showcmd	
+set showcmd
 set incsearch
-set autoindent		
+set autoindent
 set autowrite
 set laststatus=2
 set hidden  "ok to have buffers not visible what weren't written
@@ -121,10 +123,33 @@ nnoremap <c-l> <c-w>l
 " source this file whenever I change it
 augroup myvimrchooks
     au!
-    autocmd bufwritepost _vimrc source ~/_vimrc
+    autocmd bufwritepost .vimrc source ~/.vimrc
 augroup END
 
+" remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 
-:nnoremap gF :view <cfile><cr>  : open file under cursor, create if necessary
+nnoremap gF :view <cfile><cr>  : open file under cursor, create if necessary
 
 
+" Setup syntastic for javascript / eslint
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
