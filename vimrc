@@ -37,7 +37,7 @@ import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
   project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'Scripts/activate_this.py')
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
 
@@ -49,12 +49,15 @@ colorscheme desert
 " Basic stuff --------------------------------------------------------------
 "
 
+set et
+set sw=2
+set sta
 set spell
 set backspace=indent,eol,start
 set history=50
 set ruler
 set number
-set rnu
+"set rnu"
 set showcmd
 set incsearch
 set autoindent
@@ -72,13 +75,14 @@ set noerrorbells
 set nobackup
 set noswapfile
 
+"use system clipboard for yanking / putting
+set clipboard^=unnamed
 
 " Better Completion
 " Where to look for ^N and ^P completion
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
 
-set fileformat=unix
 
 
 " When editing a file, always jump to the last known cursor position.
@@ -90,6 +94,7 @@ augroup line_return
                 \ endif
 
 augroup END
+
 
 inoremap kj <Esc>
 inoremap <Esc> <nop>
@@ -104,6 +109,12 @@ nnoremap <leader>, :b#<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
 vnoremap <leader>f :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$'] " Ignore pyc files
+
+" Make ctrl-p play nice with nerdtree
+
+" Make ctrl-p play nice with git
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_cmd = 'NERDTreeClose\|CtrlP'
 
 
 let g:ycm_autoclose_preview_window_after_completion=1
