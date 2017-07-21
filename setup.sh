@@ -16,6 +16,7 @@ install_vim_config() {
   done
 }
 
+# Install vim config
 install_vim_config
 ln -vs $(pwd)/$(dirname $0)/vimrc ~/.vimrc | true
 echo ----- Installing Vim Plugins -----
@@ -27,3 +28,5 @@ echo ----- Building YouCompleteMe -----
   python install.py
 )
 
+# Install tmux config
+ln -vs $(pwd)/$(dirname $0)/.tmux.conf ~/.tmux.conf | true

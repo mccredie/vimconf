@@ -12,6 +12,10 @@
 set nocompatible
 filetype off
 
+" Mouse works in terminal
+
+set mouse=a
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
@@ -27,6 +31,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'wellle/targets.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 " :PlugInstall to install
@@ -52,7 +57,6 @@ colorscheme desert
 set et
 set sw=2
 set sta
-set spell
 set backspace=indent,eol,start
 set history=50
 set ruler
