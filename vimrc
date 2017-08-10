@@ -15,6 +15,7 @@ filetype off
 " Mouse works in terminal
 
 set mouse=a
+set ttymouse=xterm2
 
 call plug#begin('~/.vim/plugged')
 
@@ -74,6 +75,16 @@ set updatetime=250
 "quiet
 set visualbell
 set noerrorbells
+
+"Set nice statusline
+set laststatus=2
+set statusline=%F%m%r%h%w
+set statusline+=\ [FORMAT=%{&ff}]
+set statusline+=\ [TYPE=%Y]
+set statusline+=\ [ASCII=\%03.3b]
+set statusline+=\ [HEX=\%02.2B]
+set statusline+=\ [POS=%04l,%04v][%p%%]
+set statusline+=\ [LEN=%L]
 
 "backups were so last century. Commit often to git
 set nobackup
@@ -148,8 +159,8 @@ nnoremap gF :view <cfile><cr>  : open file under cursor, create if necessary
 
 
 " Setup syntastic for javascript / eslint
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=\ %#warningmsg#
+set statusline+=\ %{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
