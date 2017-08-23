@@ -33,6 +33,7 @@ Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'wellle/targets.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 " :PlugInstall to install
@@ -75,16 +76,6 @@ set updatetime=250
 "quiet
 set visualbell
 set noerrorbells
-
-"Set nice statusline
-set laststatus=2
-set statusline=%F%m%r%h%w
-set statusline+=\ [FORMAT=%{&ff}]
-set statusline+=\ [TYPE=%Y]
-set statusline+=\ [ASCII=\%03.3b]
-set statusline+=\ [HEX=\%02.2B]
-set statusline+=\ [POS=%04l,%04v][%p%%]
-set statusline+=\ [LEN=%L]
 
 "backups were so last century. Commit often to git
 set nobackup
