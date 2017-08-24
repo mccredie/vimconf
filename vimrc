@@ -19,6 +19,7 @@ set ttymouse=xterm2
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ervandew/supertab'
@@ -76,6 +77,8 @@ set updatetime=250
 "quiet
 set visualbell
 set noerrorbells
+
+set guifont=InputMono
 
 "backups were so last century. Commit often to git
 set nobackup
@@ -148,11 +151,7 @@ autocmd BufWritePre * %s/\s\+$//e
 
 nnoremap gF :view <cfile><cr>  : open file under cursor, create if necessary
 
-
-" Setup syntastic for javascript / eslint
-set statusline+=\ %#warningmsg#
-set statusline+=\ %{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:airline_powerline_fonts = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
