@@ -26,7 +26,6 @@ Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-shell'
-Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
 Plug 'pangloss/vim-javascript'
 Plug 'vim-syntastic/syntastic'
@@ -35,12 +34,17 @@ Plug 'wellle/targets.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+Plug 'ramitos/jsctags'
+Plug 'othree/jspc.vim'
+Plug 'majutsushi/tagbar'
+Plug 'Shougo/neocomplete.vim'
 
 call plug#end()
 " :PlugInstall to install
 
 "python with virtualenv support
-py << EOF
+python3 << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -69,6 +73,7 @@ set showcmd
 set incsearch
 set autoindent
 set autowrite
+set autoread
 set laststatus=2
 set hidden  "ok to have buffers not visible what weren't written
 set wrapscan    "search scan wraps around the file
@@ -113,6 +118,9 @@ vnoremap <Esc> <nop>
 
 let mapleader=","
 
+" reload after doing a git pull for example
+nnoremap <leader>r :checkt<CR>
+
 nnoremap <leader>, :b#<CR>
 
 nnoremap <leader>f :NERDTreeToggle<CR>
@@ -125,10 +133,7 @@ let NERDTreeIgnore=['\.pyc$'] " Ignore pyc files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_cmd = 'NERDTreeClose\|CtrlP'
 
-
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+let g:neocomplete#enable_at_startup = 1
 
 " I like to edit vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -158,7 +163,8 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
