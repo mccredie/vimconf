@@ -18,11 +18,14 @@ install_vim_config() {
 
 # Install vim config
 install_vim_config
-ln -vs $(pwd)/$(dirname $0)/vimrc ~/.vimrc | true
+ln -vs $(pwd)/$(dirname $0)/vimrc ~/.vimrc || true
 echo ----- Installing Vim Plugins -----
 vim -c ":PlugInstall | qa"
 
-echo ----- Building YouCompleteMe -----
+# Install YCM config
+ln -vs $(pwd)/$(dirname $0)/ycm_conf.py ~/.ycm_conf.py || true
+
+#echo ----- Building YouCompleteMe -----
 (
   cd ~/.vim/plugged/YouCompleteMe;
   python install.py

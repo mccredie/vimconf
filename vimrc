@@ -38,20 +38,11 @@ Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'ramitos/jsctags'
 Plug 'othree/jspc.vim'
 Plug 'majutsushi/tagbar'
-Plug 'Shougo/neocomplete.vim'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 " :PlugInstall to install
 
-"python with virtualenv support
-python3 << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
 
 syntax on
 filetype plugin indent on
@@ -170,6 +161,9 @@ let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
+
+let g:ycm_python_interpreter_path = ''
+let g:ycm_global_ycm_extra_conf = '~/.ycm_conf.py'
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
